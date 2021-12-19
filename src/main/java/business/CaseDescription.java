@@ -97,11 +97,12 @@ package business;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import db.FileHandler;
 import db.MySQLHandler;
 
 public class CaseDescription {
 	MySQLHandler m;
-
+	FileHandler f;
 	private int caseID;
 	private String title;
 	private String desc;
