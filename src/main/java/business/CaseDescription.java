@@ -153,27 +153,6 @@ public class CaseDescription {
 		this.target = target;
 	}
 
-	/*
-	public void getAll() throws ClassNotFoundException, SQLException
-	{
-		m=new MySQLHandler();
-		m.getDetails();
-		
-		for(int i=0;i<m.cd.size();i++) {
-			System.out.println("CASES IN DB "+m.cd.get(i));
-		}
-	}	
-		public void getaCase(String caseNo) throws ClassNotFoundException, SQLException
-		{
-			m=new MySQLHandler();
-			m.getPartDetails(caseNo);;
-			
-			for(int i=0;i<m.cd.size();i++) {
-				System.out.println("CASES IN DB "+m.cd.get(i));
-			}
-			
-		}
-	*/	
 		
 	public CaseDescription() {
 		// TODO Auto-generated constructor stub
