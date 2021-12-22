@@ -25,6 +25,12 @@ private String password;
 
 
 
+	public Moderator() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
 	public MySQLHandler getM() {
 		return m;
 	}

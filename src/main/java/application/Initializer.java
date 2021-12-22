@@ -60,6 +60,24 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 
+class InvalidAccountNumberException  extends Exception
+{
+    public InvalidAccountNumberException (String str)
+    {
+        // calling the constructor of parent Exception
+        super(str);
+    }
+}
+
+class InvalidDonationExceptionException  extends Exception
+{
+    public InvalidDonationExceptionException (String str)
+    {
+        // calling the constructor of parent Exception
+        super(str);
+    }
+}
+
 public class Initializer  implements Initializable {
     private Stage stage;
     private Scene scene;
@@ -75,7 +93,7 @@ public class Initializer  implements Initializable {
     public TextField AccountLabel=new TextField();
 
     @FXML
-    public ListView<String> ListCase = new ListView<String>();
+    public ListView<String> ListCase = new ListView<>();
 
     @FXML
     private Label label1;
@@ -91,6 +109,7 @@ public class Initializer  implements Initializable {
     static String myStaticTitle; static Integer totalAmount,RecvAmount;
     Integer toBeUpdated;
 
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         case1 = new Case();
 
@@ -109,9 +128,10 @@ public class Initializer  implements Initializable {
             ListCase.getItems().add(temp2.get(i).getTitle());
         }
 
-        final ArrayList<CaseDescription> finalTemp = temp2;
+        ArrayList<CaseDescription> finalTemp = temp2;
         ListCase.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>(){
 
+            @Override
             public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
                 // TODO Auto-generated method stub
                 titleGot=ListCase.getSelectionModel().getSelectedItem();
@@ -145,40 +165,72 @@ public class Initializer  implements Initializable {
         stage.show();
     }
 
+    //I AM NEW 2
+    public void backToDonorMenu(ActionEvent e) throws IOException, ClassNotFoundException, SQLException
+    {
+        root=FXMLLoader.load(getClass().getResource("DonorMenu.fxml"));
+        stage=(Stage)((Node)e.getSource()).getScene().getWindow();
+        scene=new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Donations Proposal Addition");
+        stage.show();
+
+    }
+
 
 
     //I AM NEW
     public void donateToCaseDone(ActionEvent e) throws IOException, SQLException, ClassNotFoundException {
         Integer size = AccountLabel.getText().length();
-        if(size.equals(13))
+
+        try
         {
+        if (size.equals(13)) {
             amountGot = AmountLabel.getText();
-            System.out.println("Amount rec: " + amountGot + "For case: "  + myStaticTitle);
+            System.out.println("Amount rec: " + amountGot + "For case: " + myStaticTitle);
             RecvAmount = Integer.parseInt(amountGot);
-            toBeUpdated = totalAmount-RecvAmount;
-            if (totalAmount > RecvAmount )
-            {
+            toBeUpdated = totalAmount - RecvAmount;
+
+
+            if (totalAmount > RecvAmount) {
                 case1.updateTarget(myStaticTitle, toBeUpdated);
+                root = FXMLLoader.load(getClass().getResource("SuccessfulTransaction.fxml"));
+                stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.setTitle("Donor Menu");
+                stage.show();
             }
 
-            root=FXMLLoader.load(getClass().getResource("SuccessfulTransaction.fxml"));
-            stage=(Stage)((Node)e.getSource()).getScene().getWindow();
-            scene=new Scene(root);
-            stage.setScene(scene);
-            stage.setTitle("Donor Menu");
-            stage.show();
+            else
 
-        }
+            {
+                root = FXMLLoader.load(getClass().getResource("AmountExceeded.fxml"));
+                stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.setTitle("Donation Amount Invalid" );
+                stage.show();
+            }
 
-        else
 
-        {
-            root=FXMLLoader.load(getClass().getResource("InvalidAccountNo.fxml"));
-            stage=(Stage)((Node)e.getSource()).getScene().getWindow();
-            scene=new Scene(root);
+
+        } else {
+            root = FXMLLoader.load(getClass().getResource("InvalidAccountNo.fxml"));
+            stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            scene = new Scene(root);
             stage.setScene(scene);
             stage.setTitle("Donations Proposal Addition");
             stage.show();
+            throw new InvalidAccountNumberException("The specified account number is not valid");
+        }
+
+    }
+
+        catch (InvalidAccountNumberException ex)
+        {
+            System.out.println("This is the exception");
+            System.out.println("The exception was : " + ex);
         }
 
     }
@@ -190,6 +242,17 @@ public class Initializer  implements Initializable {
         scene=new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Donor Menu");
+        stage.show();
+
+    }
+
+    public void backToAddDonation(ActionEvent e) throws IOException
+    {
+        root=FXMLLoader.load(getClass().getResource("AddDonationAmount.fxml"));
+        stage=(Stage)((Node)e.getSource()).getScene().getWindow();
+        scene=new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Add Donation Amount");
         stage.show();
 
     }

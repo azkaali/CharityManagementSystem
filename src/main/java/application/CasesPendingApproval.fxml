@@ -8,10 +8,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Initializer2">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Initializer2">
    <children>
-      <ListView fx:id="ListCase" layoutX="31.0" layoutY="43.0" prefHeight="306.0" prefWidth="176.0" />
-      <Label fx:id="label1" layoutX="251.0" layoutY="43.0" prefHeight="263.0" prefWidth="309.0" style="-fx-font-family: Verdana;" wrapText="true">
+      <ListView fx:id="ListCase" layoutX="31.0" layoutY="43.0" prefHeight="306.0" prefWidth="176.0" style="-fx-background-color: #ff914d;" />
+      <Label fx:id="label1" layoutX="251.0" layoutY="43.0" prefHeight="263.0" prefWidth="511.0" style="-fx-font-family: Verdana;" wrapText="true">
          <effect>
             <Glow />
          </effect>
@@ -22,6 +22,8 @@
             <Font name="Castellar" size="12.0" />
          </font>
       </Label>
-      <Button fx:id="DonateNow" layoutX="274.0" layoutY="343.0" mnemonicParsing="false" onAction="#donateToCase" text="Verify" />
+      <Button fx:id="DonateNow" layoutX="284.0" layoutY="349.0" mnemonicParsing="false" onAction="#verifyCase" prefHeight="25.0" prefWidth="132.0" style="-fx-background-color: #ff914d;" text="Verify" textFill="WHITE" />
+      <Button layoutX="251.0" layoutY="349.0" mnemonicParsing="false" onAction="#BacktomoderatorMenu" style="-fx-background-color: #ff914d;" text="&lt;" textFill="WHITE" />
+      <Button layoutX="428.0" layoutY="349.0" mnemonicParsing="false" onAction="#delteCase" prefHeight="25.0" prefWidth="132.0" style="-fx-background-color: #ff914d;" text="Delete" textFill="WHITE" />
    </children>
 </AnchorPane>

@@ -4,19 +4,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import db.FileHandler;
 import db.MySQLHandler;
 
 public class Case {
 	private int caseID;
 	private String details;
 	MySQLHandler m;
-	public ArrayList<CaseDescription> CasesDesc; //MAI PROPOSED CASES KI DESCRIPTION KI ARRAYLIST HUN
+	FileHandler f;
+	public static ArrayList<CaseDescription> CasesDesc; //MAI PROPOSED CASES KI DESCRIPTION KI ARRAYLIST HUN
 	public ArrayList<CaseDescription> ActiveCasesDesc;
 
 	public Case(int caseid) {
 		this.caseID=caseid;
 		
-	}
+	} 
 	
 	public Case(int caseid2, String name, String description, int goal) {
 		// TODO Auto-generated constructor stub
@@ -39,17 +41,13 @@ public class Case {
 	}
 	
 
-	/*public void fetchDescription(CaseDescription c) throws ClassNotFoundException, SQLException
-	{
-		c.getAll();
-	}
-	*/
 	public void addProposedCase(String name,String description,int goal) throws ClassNotFoundException, SQLException
 	{
 		CasesDesc=new ArrayList<CaseDescription>();
 		CasesDesc.add(new CaseDescription(name,description,goal));
 		CaseDescription c=new CaseDescription();
 		c.proposedCase(name, description,goal);
+		FileHandler.appendStrToFile(name, description, goal);
 	
 	}
 	
@@ -78,8 +76,9 @@ public class Case {
 			System.out.println("im in loop of getDAta");
 
 			System.out.println("Name "+CasesDesc.get(i).getTitle()+" Username "+CasesDesc.get(i).getDesc()+" email " +CasesDesc.get(i).getTarget());
-			
+
 		}
+
 		//return pcases;
 	}
 	
@@ -93,12 +92,7 @@ public class Case {
 		CasesDesc=c.getAll();
 		pcases=m.getInCases();
 		
-		for(int i=0;i<CasesDesc.size();i++) {
-			System.out.println("im in loop of getDAta");
-
-			//System.out.println("Name "+pcases.get(i).getId()+" Username "+CasesDesc.get(i).getCdescription()+" email " +CasesDesc.get(i).getCgoal());
-			
-		}
+		
 	}
 	
 	public static MySQLHandler sql1;
@@ -117,10 +111,39 @@ public class Case {
 	return caseDesc;
 	}
 	
-	public void updateTarget(String title,int updatedTarget) throws ClassNotFoundException, SQLException
+
+	public boolean updateTarget(String title,int updatedTarget) throws ClassNotFoundException, SQLException
 	{
 		m=new MySQLHandler();
-		m.updateTarget(title,updatedTarget);
+		boolean f = m.updateTarget(title,updatedTarget);
+	    return f;
+	}
+	//MARIA
+	
+	public boolean addActiveCase(int id,String name,String description,int goal) throws ClassNotFoundException, SQLException
+	{
+		ActiveCasesDesc=new ArrayList<CaseDescription>();
+		ActiveCasesDesc.add(new CaseDescription(name,description,goal));
+		CaseDescription c=new CaseDescription();
+		boolean f = c.activeCase(id,name, description,goal);
+	
+		 return f;
+	}
+	public boolean addProposedCase(int id,String name,String description,int goal) throws ClassNotFoundException, SQLException
+	{
+		CasesDesc=new ArrayList<CaseDescription>();
+		CasesDesc.add(new CaseDescription(name,description,goal));
+		CaseDescription c=new CaseDescription();
+		boolean flag = c.proposedCase(id,name, description,goal);
+		return flag;
+	
+	}
+	public void deleteCase(String title) throws ClassNotFoundException, SQLException
+	{
+		m=new MySQLHandler();
+		m.deleteaRow(title);
 	}
 
+
+	
 }

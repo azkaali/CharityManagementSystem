@@ -1,15 +1,64 @@
 package db;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
+import java.util.ArrayList;
+
+import com.mchange.v2.io.FileUtils;
+
 import java.io.*;
+import business.CaseDescription;
+
 
 public class FileHandler {
 	// Method 1
 		// TO append string into a file
-		public static void appendStrToFile(String fileName,
-										String str)
+		public static void appendStrToFile(String name,String description,int goal)
 		{
+			//CaseDescription object=new CaseDescription();
+			//String convertedToString = String.valueOf(CasesDesc);  //method 1
+			//System.out.println("CALLED"+convertedToString);
+			
+			//String convertedToString = Object.toString();  //method 3
+
+			String s=Integer.toString(goal);
+			try 
+			{
+		      File create_f = new File("CaseDescription.txt");
+		      FileWriter fileWriter1 = new FileWriter(create_f, true);
+		      BufferedWriter bufferWriter1 = new BufferedWriter(fileWriter1);
+		      //bufferWriter1.write("Case#	Title	Description							Target");
+		      bufferWriter1.newLine();
+		      bufferWriter1.write(name+"\t");
+		      bufferWriter1.write(description+"\t\t\t\t");
+		      bufferWriter1.write(s);
+
+		      bufferWriter1.newLine();
+	//	      bufferWriter1.write("Flight2	Karachi	Islamabad	23-Oct-2021		7:00 pm		44");
+
+		      bufferWriter1.close();
+		      fileWriter1.close();
+		      //System.out.println("Successfully wrote to the file.");
+		    } 
+		catch (IOException e)
+			{
+		      System.out.println("An error occurred.");
+		      e.printStackTrace();
+		    }
+			
+			
+			/*
+			try {
+			    FileOutputStream fos = new FileOutputStream("CaseDescription.txt");
+			    ObjectOutputStream oos = new ObjectOutputStream(fos);   
+			    oos.writeObject(CasesDesc); // write MenuArray to ObjectOutputStream
+			    oos.close(); 
+			} catch(Exception ex) {
+			    ex.printStackTrace();
+			}
+			*/
+			
+		}
+			
+			/*
 			// Try block to check for exceptions
 			try {
 
@@ -30,6 +79,7 @@ public class FileHandler {
 				// Display message when exception occurs
 				System.out.println("exception occurred" + e);
 			}
+			
 		}
 
 		// Method 2
@@ -64,10 +114,11 @@ public class FileHandler {
 
 			// Now appendinggiven str to above
 			// created file
-			String str = "This is GeeksforGeeks";
+			//ArrayList<CaseDescription> str = "This is GeeksforGeeks";
+			String convertedToString = String.valueOf(CasesDesc);  //method 1
 
 			// Calling the above method
-			appendStrToFile(fileName, str);
+			appendStrToFile(fileName, CasesDesc);
 			try {
 				BufferedReader in = new BufferedReader(
 					new FileReader("CaseDescription.txt"));
@@ -81,6 +132,7 @@ public class FileHandler {
 				System.out.println("Exception Occurred" + e);
 			}
 		}
+		*/
 	
 
 

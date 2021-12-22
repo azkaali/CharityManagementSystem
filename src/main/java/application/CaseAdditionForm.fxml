@@ -6,14 +6,15 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="497.0" prefWidth="691.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
    <children>
       <TextField fx:id="newCaseName" layoutX="140.0" layoutY="54.0" />
       <Label layoutX="140.0" layoutY="27.0" text="Case Name" />
-      <TextArea fx:id="newCaseDescription" layoutX="140.0" layoutY="125.0" prefHeight="164.0" prefWidth="423.0" />
+      <TextArea fx:id="newCaseDescription" layoutX="140.0" layoutY="125.0" prefHeight="130.0" prefWidth="423.0" />
       <Label layoutX="140.0" layoutY="99.0" text="Case Description" />
-      <Label layoutX="140.0" layoutY="308.0" text="Target" />
-      <TextField fx:id="newCaseGoal" layoutX="140.0" layoutY="334.0" />
-      <Button layoutX="174.0" layoutY="390.0" mnemonicParsing="false" onAction="#caseAdditionSuccessful" text="Add Case" />
+      <Label layoutX="140.0" layoutY="270.0" text="Target" />
+      <TextField fx:id="newCaseGoal" layoutX="140.0" layoutY="296.0" onKeyPressed="#validateTarget" onMouseDragOver="#validateTarget" />
+      <Button fx:id="addCase" layoutX="170.0" layoutY="353.0" mnemonicParsing="false" onAction="#caseAdditionSuccessful" prefHeight="25.0" prefWidth="123.0" style="-fx-background-color: #ff914d;" text="Add Case" textFill="WHITE" />
+      <Button layoutX="136.0" layoutY="353.0" mnemonicParsing="false" onAction="#BacktomoderatorMenu" style="-fx-background-color: #ff914d;" text="&lt;" textFill="WHITE" />
    </children>
 </AnchorPane>

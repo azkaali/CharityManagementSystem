@@ -17,10 +17,12 @@ public class StoreData {
 	        Transaction trans= session.beginTransaction();
 
 	        CaseDescription p=new CaseDescription();
-	        p.setCaseID(0);
-	        p.setTitle("NewCase");
-	        p.setDesc("This case needs money");
-	        p.setTarget(10000);
+	        p.setCaseID(12);
+	        p.setTitle("Wedding Function");
+	        p.setDesc("Sajid requires money for his eldest daughter's marriage"); 
+	        p.setTarget(50000);
+	        
+	        
 	        session.save(p);
 	        
 	        

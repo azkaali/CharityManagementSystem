@@ -94,13 +94,14 @@ public class CaseDescription {
 		
 package business;
 
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import db.FileHandler;
 import db.MySQLHandler;
 
-public class CaseDescription {
+public class CaseDescription implements Serializable {
 	MySQLHandler m;
 	FileHandler f;
 	private int caseID;
@@ -176,6 +177,20 @@ public class CaseDescription {
 		return m.pcasesGet();
 	}
 	
+	
+	//MARIA
+	public boolean proposedCase(int id,String name, String description, int goal) throws ClassNotFoundException, SQLException
+	{
+		m=new MySQLHandler();
+		boolean flag = m.casesDB(id,name,description,goal);//adding data in casedetails not confirmed yet 
+	    return flag;
+	}
+	public boolean activeCase(int id,String name, String description, int goal) throws ClassNotFoundException, SQLException
+	{
+		m=new MySQLHandler();
+		boolean f = m.activeCasesDB(id,name,description,goal);//adding data in casedescription
+	    return f;
+	}
 
 }
 	

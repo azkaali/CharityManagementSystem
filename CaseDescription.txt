@@ -1,2 +1,19 @@
-Hello World:
-This is GeeksforGeeks
+Case#	Title	Description							Target
+
+hello	no					1000
+
+Eye Surgery	donation required				10000
+
+NGO Donation	An NGO needs funds				120000
+
+hogia 2	hogia 2				1234
+
+TB Patient	Miss Kinza requires money for treatment of her daughter who's suffering from TB. She is a single mother of five children and works as a receptionist in an office.				100000
+
+A former foundry drive	A once-declining Cornish town is now thriving thanks to this heritage project. A CAF Bank loan secured the latest phase of the build.				540000
+
+Stockwood Community Benefit	A community-owned farm and business park are inspiring local people to produce and buy food sustainably.				190000
+
+Chelmund's Fish & Chips	Working capital to open Britain's first community chippy and put the heart into a new village hub.				600000
+
+Hubbub	Investing in social media campaigns to create a vlog which has inspired over 15 million people to think differently about how they treat the environment.				152000

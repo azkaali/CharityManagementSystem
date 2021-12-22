@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
    <children>
-      <Label layoutX="233.0" layoutY="128.0" text="Moderator added successfully" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff914d" height="61.0" layoutX="-117.0" layoutY="170.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="803.0" />
+      <Button layoutX="228.0" layoutY="307.0" mnemonicParsing="false" onAction="#backtoAdminMenu" prefHeight="25.0" prefWidth="186.0" style="-fx-background-color: ff914d;" text="Okay" textFill="WHITE" />
+      <Label layoutX="177.0" layoutY="162.0" prefHeight="77.0" prefWidth="311.0" text="Moderator Added Successfully" textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

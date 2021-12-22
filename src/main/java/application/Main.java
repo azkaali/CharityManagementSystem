@@ -1,58 +1,61 @@
 package application;
 
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Random;
 
 import business.Account;
 import business.Case;
 import business.NGO;
 import db.MySQLHandler;
+import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
+
 
 public class Main extends Application {
 	 private Stage stage;
 	 private Scene scene;
 	 private Parent root;
-
+ 
+	
+	 
+	 
 	@Override
 	public void start(Stage arg0) throws Exception {
-		// stage=new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(Controller.class.getResource("FirstPage.fxml"));
-        Scene scene = new Scene((Parent) fxmlLoader.load(), 520, 440);
+	//	Thread.setDefaultUncaughtExceptionHandler(Main::showError);
+				
+        FXMLLoader fxmlLoader = new FXMLLoader(Controller.class.getResource("start.fxml"));
+        Scene scene = new Scene((Parent) fxmlLoader.load(), 800, 400);
         arg0.setScene(scene);
         arg0.show();
 		arg0.setTitle("Charity Management System");
 
-		/*
-		 FXMLLoader f=new FXMLLoader();
-		 String path="C:\\Users\\S F\\eclipse-workspace\\CharityManagementSystem\\src\\application\\FirstPage.fxml";
-		 FileInputStream f1=new FileInputStream(path);
-		 AnchorPane a=(AnchorPane)f.load(f1);
-		 Scene s=new Scene(a);
-		 arg0.setScene(s);
-		 arg0.show();
-		 NGO b=new NGO();
-		b.getData();
-		
-		//Account acc=new Account();
-		//acc.moderatorAddition("Vara", "v","v@madadgar.org.pk","v");
-		 /* root=FXMLLoader.load(getClass().getResource("AdminMenu.fxml"));
-	        stage=(Stage)((Node)e.getSource()).getScene().getWindow();
-	        scene=new Scene(root);
-	        stage.setScene(scene);
-	        stage.setTitle("Admin Menu");
-	        stage.show();
-		*/
 	
 	}
-	
-	
+
+
 	 public static void main(String[] args) {
 		 
 	        launch(args);

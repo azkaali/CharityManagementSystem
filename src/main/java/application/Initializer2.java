@@ -8,8 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import java.io.FileInputStream;
 import javafx.scene.Node;
@@ -71,15 +70,18 @@ public class Initializer2  implements Initializable {
     private Scene scene;
     private Parent root;
     CaseDescription cd;
+    NGO ngo=new NGO();
+    Case case2;
 
     @FXML
     private ResourceBundle resources;
 
     @FXML
-    public ListView<String> ListCase = new ListView<String>();
+    public ListView<String> ListCase = new ListView<>();
 
     @FXML
     private Label label1;
+    public Button ok;
 
     @FXML
     public TextField AmountLabel=new TextField();
@@ -89,11 +91,14 @@ public class Initializer2  implements Initializable {
     @FXML
     private Button DonateNow;
 
-    String titleGot;
+    static String titleGot;
     String titleGot2;
     String amountGot;
+    static ArrayList<CaseDescription> finalTemp2;
 
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        case2 = new Case();
         cd = new CaseDescription();
 
         ArrayList<CaseDescription> CasesDesc =new ArrayList<CaseDescription>();
@@ -112,15 +117,20 @@ public class Initializer2  implements Initializable {
 			ListCase.getItems().add(CasesDesc.get(i).getTitle());
 		}
             //cases.getItems(temp2.get(i).getTitle());
-            
-        
 
-        final ArrayList<CaseDescription> finalTemp = CasesDesc;
+
+
+        ArrayList<CaseDescription> finalTemp = CasesDesc;
+        finalTemp2 = CasesDesc;
+        //ListCase.getSelectionModel().clearSelection();
+
         ListCase.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>(){
 
+            @Override
             public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
                 // TODO Auto-generated method stub
                 titleGot=ListCase.getSelectionModel().getSelectedItem();
+
                 //CandidateController.party=party;
                 for (int i = 0; i < finalTemp.size(); i++) {
                     //System.out.println( "Title " + finalTemp.get(i).getTitle());
@@ -133,22 +143,79 @@ public class Initializer2  implements Initializable {
                     }
                 }
                 label1.setText(titleGot2);
+                //ListCase.getItems().clear();
+                //ListCase.getSelectionModel().clearSelection();
+
             }
-        });
+        });     ListCase.getSelectionModel().clearSelection();
 
     }
-    @FXML
-    void donateToCase(ActionEvent event) throws IOException{
 
-    	
+
+    @FXML
+    void verifyCase(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
+        //ListCase.getSelectionModel().clearSelection();
+        for (int i = 0; i < finalTemp2.size(); i++) {
+            if(titleGot.equals(finalTemp2.get(i).getTitle()))
+            {
+                String newcase=titleGot;
+                String newCaseDesc=finalTemp2.get(i).getDesc();
+                String newgoal=String.valueOf(finalTemp2.get(i).getTarget());
+                int newGoal=Integer.parseInt(newgoal);
+                System.out.println("IM NOW AN INTEGER"+newGoal);
+                ngo.addCases(newcase, newCaseDesc, newGoal);
+            }
+        }
+        System.out.println("DELETE THIS" + titleGot);
+        case2.deleteCase(titleGot);
+
+        case2.deleteCase(titleGot);
+        root=FXMLLoader.load(getClass().getResource("CasesPendingApproval.fxml"));
+        stage=(Stage)((Node)event.getSource()).getScene().getWindow();
+        scene=new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Verified Case!");
+        stage.show();
+
         Stage stage=new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(Controller.class.getResource("VerifiedSuccessfully.fxml"));
-        Scene scene = new Scene((Parent) fxmlLoader.load(), 520, 440);
+        Scene scene = new Scene(fxmlLoader.load(), 800, 400);
         stage.setTitle("Verified Case!");
         stage.setScene(scene);
         stage.show();
+
     }
 
+    public void delteCase(ActionEvent e) throws IOException, ClassNotFoundException, SQLException
+    {
+        case2.deleteCase(titleGot);
+        root=FXMLLoader.load(getClass().getResource("CasesPendingApproval.fxml"));
+        stage=(Stage)((Node)e.getSource()).getScene().getWindow();
+        scene=new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Verified Case!");
+        stage.show();
+    }
+
+    public void BacktomoderatorMenu(ActionEvent e) throws IOException, ClassNotFoundException, SQLException
+    {
+        root=FXMLLoader.load(getClass().getResource("ModeratorMenu.fxml"));
+        stage=(Stage)((Node)e.getSource()).getScene().getWindow();
+        scene=new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Moderator Menu");
+        stage.show();
+    }
+
+
+    public void loginFailed(ActionEvent e) throws IOException
+    {
+
+        Stage stage=(Stage) ok.getScene().getWindow();
+        // do what you have to do
+        stage.close();
+
+    }
     
 
 }

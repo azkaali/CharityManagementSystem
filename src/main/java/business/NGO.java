@@ -13,11 +13,23 @@ public class NGO {
 	public ArrayList<Case> ActiveCases;
 
 	
-	public void proposedCases(String name, String description, int goal) throws ClassNotFoundException, SQLException
+	synchronized void printTable(int n){//synchronized method  
+		   for(int i=1;i<=5;i++){  
+		     System.out.println(n*i);  
+		     try{  
+		      Thread.sleep(400);  
+		     }catch(Exception e){System.out.println(e);}  
+		   }  
+		  
+		 }  
+		
+	public void proposedCases(String name, String description, int goal) throws ClassNotFoundException, SQLException, InterruptedException
 	{
 		pcases=new ArrayList<Case>();
 		pcases.add(new Case());
 		Case pcase=new Case();
+	      Thread.sleep(400);  
+
 		pcase.addProposedCase(name, description, goal);
 		
 		

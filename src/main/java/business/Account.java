@@ -22,8 +22,24 @@ public class Account {
 		
 		// TODO Auto-generated constructor stub
 	}
-	
+	//MARIA
+	public boolean signUp(String name, String usrName, String email, String pass) throws ClassNotFoundException, SQLException {
+		donors = new ArrayList<Donor>();
+		m=new MySQLHandler();
+		boolean f = m.donorDB(name, usrName, email, pass);
+		donors.add(new Donor(name,usrName,email,pass));
+		for(int i=0;i<donors.size();i++) {
+			System.out.println("Name "+donors.get(i).getFirstname()+" Username "+donors.get(i).getUsername()+" email"+donors.get(i).getEmail()+" password"+donors.get(i).getPassword());
+			
+		}
+		
+		return f;
+		//party_id=0;
+		
+		
+	}
 
+	/*
 	public void signUp(String name, String usrName, String email, String pass) throws ClassNotFoundException, SQLException {
 		donors = new ArrayList<Donor>();
 		m=new MySQLHandler();
@@ -38,7 +54,21 @@ public class Account {
 		
 		
 	}
-	
+	*/
+	//MARIA
+public boolean moderatorAddition(String name, String usrName, String email, String pass) throws ClassNotFoundException, SQLException {
+		
+		moderators = new ArrayList<Moderator>();
+		m=new MySQLHandler();
+		boolean f =m.moderatorDB(name, usrName, email, pass);
+		moderators.add(new Moderator(name,usrName,email,pass));
+		for(int i=0;i<moderators.size();i++) {
+			System.out.println("Name "+moderators.get(i).getFirstname()+" Username "+moderators.get(i).getUsername()+" email"+moderators.get(i).getEmail()+" password"+moderators.get(i).getPassword());
+			
+		}
+		return f;
+	}
+/*
 	public void moderatorAddition(String name, String usrName, String email, String pass) throws ClassNotFoundException, SQLException {
 		moderators = new ArrayList<Moderator>();
 		m=new MySQLHandler();
@@ -49,7 +79,9 @@ public class Account {
 			
 		}
 	}
-	public void getData() throws ClassNotFoundException, SQLException
+	
+*/
+	public ArrayList<Donor> getData() throws ClassNotFoundException, SQLException
 	{
 		m=new MySQLHandler();
 		donors=m.donorGet();
@@ -59,6 +91,7 @@ public class Account {
 			System.out.println("Name "+donors.get(i).getFirstname()+" Username "+donors.get(i).getUsername()+" email"+donors.get(i).getEmail()+" password"+donors.get(i).getPassword());
 			
 		}
+		return donors;
 	}
 	
 	public Boolean signIn(String usrName, String pass) throws ClassNotFoundException, SQLException {
